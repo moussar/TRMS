@@ -12,7 +12,7 @@ const CardContainer = ({ index, ...card }) => {
 
   if (!formIsOn) {
     return (
-      <Draggable draggableId={String(card.id)} index={index}>
+      <Draggable draggableId={String(card.id)} index={card.position}>
         {provided => (
           <div
             ref={provided.innerRef}

@@ -8,7 +8,11 @@ const ListCards = ({ data, idList, toggleForm, formIsOn, forceToggleForm }) => {
     <div className="list-cards">
       <Droppable droppableId={String(idList)}>
         {provided => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
+          <div
+            className="list-cards-droppable"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
             {data.map((card, index) => (
               <Card key={card.id} {...card} index={index} />
             ))}

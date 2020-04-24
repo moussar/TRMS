@@ -1,7 +1,7 @@
 import React from "react";
 import Member from "./Member";
 
-const Card = ({ title, members, toggleModal, toggleForm }) => {
+const Card = ({ title, members, toggleModal, toggleForm, position }) => {
   return (
     <div className="card">
       <div className="card-details">
@@ -15,7 +15,7 @@ const Card = ({ title, members, toggleModal, toggleForm }) => {
         <div className="card-badges">
           <div className="card-badge">
             <span className="card-badge-icon icon-sm icon-comment" />
-            <span className="card-badge-text">2</span>
+            <span className="card-badge-text">{position}</span>
           </div>
         </div>
         <div className="card-members">

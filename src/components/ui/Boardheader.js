@@ -11,6 +11,7 @@ const BoardHeader = () => {
           dir="auto"
           maxLength="512"
           value=""
+          readOnly={true}
         />
       </div>
       <span className="board-header-btn-divider" />

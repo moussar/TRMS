@@ -1,11 +1,13 @@
 import React, { useMemo } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { denormalize } from "../../utlis";
 import { useToggle } from "../../hooks";
 import ListCards from "../ui/ListCards";
 
-const ListCardsContainer = ({ cards, list }) => {
+const ListCardsContainer = ({ list }) => {
   const [toggleForm, formIsOn, forceToggleForm] = useToggle(false);
+  const cards = useSelector(state => state.card.cards);
+
   const data = useMemo(
     () => denormalize(cards).filter(card => card.idList === list.id),
     [cards, list.id]
@@ -22,6 +24,4 @@ const ListCardsContainer = ({ cards, list }) => {
   );
 };
 
-export default connect((state, ownProps) => ({
-  cards: state.card.cards
-}))(ListCardsContainer);
+export default ListCardsContainer;

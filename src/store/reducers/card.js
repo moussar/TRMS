@@ -19,6 +19,8 @@ const cardReducer = (state = initialState, action) => {
     case T.UPDATE_CARD:
       let cards = { ...state.cards };
       cards[action.payload.card.id] = action.payload.card;
+      cards = cards.sort((a, b) => a.position - b.position);
+      console.log(cards);
       return {
         ...state,
         cards

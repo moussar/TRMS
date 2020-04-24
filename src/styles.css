@@ -453,6 +453,10 @@ textarea {
   min-height: 0;
 }
 
+.list-cards-droppable{
+  min-height: 5px
+}
+
 .card-composer-container {
   min-height: 38px;
   max-height: 38px;

@@ -33,6 +33,19 @@ const onGetLists = () => ({
   }
 });
 
+const onUpdateListCrads = (card, oldListId, newListId) => ({
+  type: "API",
+  payload: {
+    schema: [schema.lists],
+    service: API._updateListCrads(card, oldListId, newListId),
+    success: ({ entities: { lists, cards } }) => [
+      setCards(cards || []),
+      setLists(lists || [])
+    ],
+    failure: error => setErrors(error)
+  }
+});
+
 const onCreateList = (newList, after) => ({
   type: "API",
   payload: {
@@ -62,4 +75,10 @@ const onDeleteList = listId => ({
   }
 });
 
-export { onGetLists, onCreateList, onUpdateList, onDeleteList };
+export {
+  onGetLists,
+  onCreateList,
+  onUpdateList,
+  onUpdateListCrads,
+  onDeleteList
+};

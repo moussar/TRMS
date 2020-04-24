@@ -38,6 +38,42 @@ function _updateList(list) {
   });
 }
 
+function _updateListCrads(card, oldListId, newListId) {
+  return new Promise((resolve, reject) => {
+    let lists = JSON.parse(localStorage.getItem("lists"));
+    let indexOldlist = lists.findIndex(list => String(list.id) === oldListId);
+    let indexNewList = lists.findIndex(list => String(list.id) === newListId);
+    let cards = lists[indexOldlist]["cards"].filter(c => c.id !== card.id);
+
+    if (oldListId === newListId) {
+      // change position only
+      cards.splice(card.position - 1, 0, {
+        ...card,
+        idList: Number(card.idList)
+      });
+      cards.map((c, i) => (c.position = i + 1));
+      lists[indexOldlist]["cards"] = cards;
+    } else {
+      cards.map((c, i) => (c.position = i + 1));
+      lists[indexOldlist]["cards"] = cards;
+
+      let cardsDist = lists[indexNewList]["cards"];
+      cardsDist.splice(card.position - 1, 0, {
+        ...card,
+        idList: Number(card.idList)
+      });
+      cardsDist.map((c, i) => (c.position = i + 1));
+      lists[indexNewList]["cards"] = cardsDist;
+    }
+
+    localStorage.setItem("lists", JSON.stringify([...lists]));
+
+    setTimeout(() => {
+      resolve(lists);
+    }, 0);
+  });
+}
+
 function _deleteList(listId) {
   return new Promise((resolve, reject) => {
     data = [...data.filter(u => u.id !== listId)];
@@ -46,4 +82,4 @@ function _deleteList(listId) {
   });
 }
 
-export { _getLists, _createList, _updateList, _deleteList };
+export { _getLists, _createList, _updateList, _updateListCrads, _deleteList };
