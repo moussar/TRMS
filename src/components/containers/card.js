@@ -16,7 +16,7 @@ const CardContainer = ({ index, ...card }) => {
         {provided => (
           <div
             ref={provided.innerRef}
-            {...provided.daraggableProps}
+            {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
             <Card

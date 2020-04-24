@@ -1,6 +1,4 @@
 import React, { useMemo } from "react";
-import { Droppable } from "react-beautiful-dnd";
-
 import { connect } from "react-redux";
 import { denormalize } from "../../utlis";
 import { useToggle } from "../../hooks";
@@ -12,21 +10,15 @@ const ListCardsContainer = ({ cards, list }) => {
     () => denormalize(cards).filter(card => card.idList === list.id),
     [cards, list.id]
   );
+
   return (
-    <Droppable droppableId={String(list.id)}>
-      {provided => (
-        <div {...provided.droppableProps} ref={provided.innerRef}>
-          <ListCards
-            data={data}
-            idList={list.id}
-            toggleForm={toggleForm}
-            formIsOn={formIsOn}
-            forceToggleForm={forceToggleForm}
-          />
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
+    <ListCards
+      data={data}
+      idList={list.id}
+      toggleForm={toggleForm}
+      formIsOn={formIsOn}
+      forceToggleForm={forceToggleForm}
+    />
   );
 };
 

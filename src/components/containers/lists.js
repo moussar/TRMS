@@ -15,7 +15,9 @@ const ListsContainer = ({ data, onGetLists }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <DragDropContext onDragEnd={() => console.log("Drag end Called!")}>
+    <DragDropContext
+      onDragEnd={result => console.log("Drag end Called!", result)}
+    >
       <Lists
         data={data}
         toggleForm={toggleForm}
