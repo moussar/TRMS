@@ -38,7 +38,7 @@ function _updateList(list) {
   });
 }
 
-function _updateListCrads(card, oldListId, newListId) {
+function _updateListCradsx(card, oldListId, newListId) {
   return new Promise((resolve, reject) => {
     let lists = JSON.parse(localStorage.getItem("lists"));
     let indexOldlist = lists.findIndex(list => String(list.id) === oldListId);
